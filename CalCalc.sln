@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalCalc.Web", "src\CalCalc.Web\CalCalc.Web.csproj", "{BF126CD5-BF3F-40D9-A595-E03A9F20DE83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalCalc.Service", "src\CalCalc.Service\CalCalc.Service.csproj", "{46947E66-6228-49E3-A70B-09A15426BD68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalCalc.Data", "src\CalCalc.Data\CalCalc.Data.csproj", "{94C77314-BDA2-4ED9-BD10-5BFFA4C33B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalCalc.Common", "src\CalCalc.Common\CalCalc.Common.csproj", "{479CF9A7-F400-4531-BB60-87C53E7C77C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF126CD5-BF3F-40D9-A595-E03A9F20DE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF126CD5-BF3F-40D9-A595-E03A9F20DE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF126CD5-BF3F-40D9-A595-E03A9F20DE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF126CD5-BF3F-40D9-A595-E03A9F20DE83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46947E66-6228-49E3-A70B-09A15426BD68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46947E66-6228-49E3-A70B-09A15426BD68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46947E66-6228-49E3-A70B-09A15426BD68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46947E66-6228-49E3-A70B-09A15426BD68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C77314-BDA2-4ED9-BD10-5BFFA4C33B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C77314-BDA2-4ED9-BD10-5BFFA4C33B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C77314-BDA2-4ED9-BD10-5BFFA4C33B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C77314-BDA2-4ED9-BD10-5BFFA4C33B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{479CF9A7-F400-4531-BB60-87C53E7C77C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479CF9A7-F400-4531-BB60-87C53E7C77C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479CF9A7-F400-4531-BB60-87C53E7C77C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479CF9A7-F400-4531-BB60-87C53E7C77C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
