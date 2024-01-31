@@ -1,0 +1,12 @@
+Food
+- Foods
+- Meals
+- Menus
+- Plan
+
+Users
+- Users (IdentityUsers)
+- UserProfiles
+
+Consumption
+- ConsumptionInstances
