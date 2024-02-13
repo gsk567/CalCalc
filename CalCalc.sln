@@ -8,6 +8,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalCalc.Data", "src\CalCalc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalCalc.Common", "src\CalCalc.Common\CalCalc.Common.csproj", "{479CF9A7-F400-4531-BB60-87C53E7C77C6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{76325625-6F71-4F5C-A09E-AFCEA39FF6F8}"
+	ProjectSection(SolutionItems) = preProject
+		_design.txt = _design.txt
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

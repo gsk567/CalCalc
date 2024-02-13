@@ -1,4 +1,7 @@
 {
+  "ConnectionStrings": {
+    "EntityContext": ""
+  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",

@@ -9,4 +9,4 @@ Users
 - UserProfiles
 
 Consumption
-- ConsumptionInstances
+- Consumption

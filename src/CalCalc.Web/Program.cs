@@ -1,31 +1,32 @@
 using System;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using CalCalc.Web.Data;
+using CalCalc.Data;
+using CalCalc.Service;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddDataLayer(builder.Configuration);
+builder.Services.AddServiceLayer();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddMvc();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint();
+    try
+    {
+        var scope = app.Services.CreateScope();
+        var entityContext = scope.ServiceProvider.GetRequiredService<EntityContext>();
+        await entityContext.Database.MigrateAsync();
+    }
+    catch (Exception)
+    {
+    }
 }
 else
 {
@@ -44,6 +45,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
 
 app.Run();

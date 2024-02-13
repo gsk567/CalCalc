@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CalCalc.Service;
 using Microsoft.AspNetCore.Mvc;
 using CalCalc.Web.Models;
 using Microsoft.Extensions.Logging;
@@ -7,23 +8,30 @@ namespace CalCalc.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly IDummyService dummyService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IDummyService dummyService)
     {
-        _logger = logger;
+        this.dummyService = dummyService;
     }
-
+    
+    [HttpGet("/")]
     public IActionResult Index()
     {
-        return View();
+        var model = new HomeViewModel
+        {
+            Slogan = this.dummyService.Value,
+        };
+        
+        return View(model);
     }
 
+    [HttpGet("/privacy")]
     public IActionResult Privacy()
     {
         return View();
     }
-
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
