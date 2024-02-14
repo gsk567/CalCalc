@@ -1,0 +1,15 @@
+﻿@model SignInViewModel
+
+<form asp-action="SignIn" method="post">
+    <div>
+        <label class="form-label">Email</label>
+        <input class="form-control" asp-for="Email" type="text" />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label class="form-label">Password</label>
+        <input class="form-control" asp-for="Password" type="password"/>
+        <span class="text-danger" asp-validation-for="Password"></span>
+    </div>
+    <button class="btn btn-primary" type="submit">Sign In</button>
+</form>

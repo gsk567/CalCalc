@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDataLayer(builder.Configuration);
 builder.Services.AddServiceLayer();
 
+
 builder.Services.AddMvc();
 
 var app = builder.Build();

@@ -1,5 +1,5 @@
 Food
-- Foods
+- Foods /foods/5
 - Meals
 - Menus
 - Plan

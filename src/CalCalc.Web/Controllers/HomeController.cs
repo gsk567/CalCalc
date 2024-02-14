@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CalCalc.Data;
 using CalCalc.Service;
 using Microsoft.AspNetCore.Mvc;
 using CalCalc.Web.Models;
@@ -8,20 +9,33 @@ namespace CalCalc.Web.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly EntityContext entityContext;
     private readonly IDummyService dummyService;
 
-    public HomeController(IDummyService dummyService)
+    public HomeController(
+        EntityContext entityContext,
+        IDummyService dummyService)
     {
+        this.entityContext = entityContext;
         this.dummyService = dummyService;
     }
     
     [HttpGet("/")]
-    public IActionResult Index()
+    public IActionResult Index([FromQuery]string foodName)
     {
         var model = new HomeViewModel
         {
             Slogan = this.dummyService.Value,
         };
+
+        if (!string.IsNullOrEmpty(foodName))
+        {
+            this.entityContext.Foods.Add(new Food
+            {
+                Name = foodName,
+            });
+            this.entityContext.SaveChanges();
+        }
         
         return View(model);
     }
