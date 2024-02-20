@@ -1,17 +1,35 @@
-﻿@model SignUpViewModel
+﻿@using CalCalc.Web.Shared
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model SignUpViewModel
+@{
+    var nonModelErrors = ViewContext.GetNonModelErrors();
+}
 
-<form>
+@if (nonModelErrors != null && nonModelErrors.Any())
+{
+    foreach (var error in nonModelErrors)
+    {
+        <p class="text-danger">
+            @error
+        </p>
+    }
+}
+
+<form asp-action="SignUp" method="post">
     <div>
         <label class="form-label">Email</label>
-        <input class="form-control" type="email" />
+        <input class="form-control" asp-for="Email" type="email" />
+        <span class="text-danger" asp-validation-for="Email"></span>
     </div>
     <div>
         <label class="form-label">Password</label>
-        <input class="form-control" type="password"/>
+        <input class="form-control" asp-for="Password" type="password"/>
+        <span class="text-danger" asp-validation-for="Password"></span>
     </div>
     <div>
-        <label class="form-label">ConfirmPassword</label>
-        <input class="form-control" type="password"/>
+        <label class="form-label">Confirm Password</label>
+        <input class="form-control" asp-for="ConfirmedPassword" type="password"/>
+        <span class="text-danger" asp-validation-for="ConfirmedPassword"></span>
     </div>
     <button class="btn btn-primary" type="submit">Sign Up</button>
 </form>

@@ -27,7 +27,7 @@ internal class CurrentUser : ICurrentUser
                     .HttpContext?
                     .User?
                     .Claims
-                    .FirstOrDefault(x => x.ValueType == ClaimTypes.NameIdentifier)?
+                    .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?
                     .Value;
 
                 if (!string.IsNullOrWhiteSpace(rawUserId) && Guid.TryParse(rawUserId, out var parsedUserId))

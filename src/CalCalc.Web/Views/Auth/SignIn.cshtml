@@ -1,4 +1,18 @@
-﻿@model SignInViewModel
+﻿@using CalCalc.Web.Shared
+@model SignInViewModel
+@{
+    var nonModelErrors = ViewContext.GetNonModelErrors();
+}
+
+@if (nonModelErrors != null && nonModelErrors.Any())
+{
+    foreach (var error in nonModelErrors)
+    {
+        <p class="text-danger">
+            @error
+        </p>
+    }
+}
 
 <form asp-action="SignIn" method="post">
     <div>

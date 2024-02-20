@@ -3,6 +3,7 @@ using CalCalc.Data;
 using CalCalc.Service;
 using Microsoft.AspNetCore.Mvc;
 using CalCalc.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 
 namespace CalCalc.Web.Controllers;
@@ -21,6 +22,7 @@ public class HomeController : Controller
     }
     
     [HttpGet("/")]
+    [Authorize]
     public IActionResult Index([FromQuery]string foodName)
     {
         var model = new HomeViewModel
