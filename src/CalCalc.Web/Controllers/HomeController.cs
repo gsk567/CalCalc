@@ -11,14 +11,11 @@ namespace CalCalc.Web.Controllers;
 public class HomeController : Controller
 {
     private readonly EntityContext entityContext;
-    private readonly IDummyService dummyService;
 
     public HomeController(
-        EntityContext entityContext,
-        IDummyService dummyService)
+        EntityContext entityContext)
     {
         this.entityContext = entityContext;
-        this.dummyService = dummyService;
     }
     
     [HttpGet("/")]
@@ -27,7 +24,7 @@ public class HomeController : Controller
     {
         var model = new HomeViewModel
         {
-            Slogan = this.dummyService.Value,
+            Slogan = "Hello Calculator",
         };
 
         if (!string.IsNullOrEmpty(foodName))
@@ -42,12 +39,6 @@ public class HomeController : Controller
         return View(model);
     }
 
-    [HttpGet("/privacy")]
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

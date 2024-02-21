@@ -29,10 +29,8 @@ public class EntityContext : IdentityUserContext<ApplicationUser, Guid>
     public DbSet<Food> Foods { get; set; }
 
     public DbSet<Meal> Meals { get; set; }
-    
-    public DbSet<Menu> Menus { get; set; }
-    
-    public DbSet<Plan> Plans { get; set; }
+
+    public DbSet<MealFood> MealFoods { get; set; }
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
@@ -44,6 +42,12 @@ public class EntityContext : IdentityUserContext<ApplicationUser, Guid>
     {
         this.HandleAuditableEntities();
         return base.SaveChanges();
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

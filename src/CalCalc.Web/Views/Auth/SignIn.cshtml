@@ -17,7 +17,7 @@
 <form asp-action="SignIn" method="post">
     <div>
         <label class="form-label">Email</label>
-        <input class="form-control" asp-for="Email" type="text" />
+        <input class="form-control" asp-for="Email" type="text"/>
         <span class="text-danger" asp-validation-for="Email"></span>
     </div>
     <div>
@@ -25,5 +25,8 @@
         <input class="form-control" asp-for="Password" type="password"/>
         <span class="text-danger" asp-validation-for="Password"></span>
     </div>
+    <hr/>
+    <a href="/sign-up">Don't have a profile? Sign Up.</a>
+    <hr/>
     <button class="btn btn-primary" type="submit">Sign In</button>
 </form>

@@ -1,10 +1,14 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.IO;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CalCalc.Data;
 using CalCalc.Web.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +18,8 @@ public class AuthController : Controller
 {
     private readonly UserManager<ApplicationUser> userManager;
 
-    public AuthController(UserManager<ApplicationUser> userManager)
+    public AuthController(
+        UserManager<ApplicationUser> userManager)
     {
         this.userManager = userManager;
     }

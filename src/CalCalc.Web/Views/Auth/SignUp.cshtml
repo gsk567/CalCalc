@@ -18,7 +18,7 @@
 <form asp-action="SignUp" method="post">
     <div>
         <label class="form-label">Email</label>
-        <input class="form-control" asp-for="Email" type="email" />
+        <input class="form-control" asp-for="Email" type="email"/>
         <span class="text-danger" asp-validation-for="Email"></span>
     </div>
     <div>
@@ -31,5 +31,8 @@
         <input class="form-control" asp-for="ConfirmedPassword" type="password"/>
         <span class="text-danger" asp-validation-for="ConfirmedPassword"></span>
     </div>
+    <hr/>
+    <a href="/sign-in">You already have a profile? Sign In.</a>
+    <hr/>
     <button class="btn btn-primary" type="submit">Sign Up</button>
 </form>
