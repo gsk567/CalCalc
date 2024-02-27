@@ -8,14 +8,14 @@ public class Food : AuditableEntity
     {
         this.MealParticipations = new HashSet<MealFood>();
     }
-    
+
     public string Name { get; set; }
 
     /// <summary>
     /// Weight is in grams.
     /// </summary>
     public double Weight { get; set; }
-    
+
     /// <summary>
     /// Based on the Weight.
     /// </summary>
@@ -30,17 +30,17 @@ public class Food : AuditableEntity
     /// Based on the Weight.
     /// </summary>
     public double Sugars { get; set; }
-    
+
     /// <summary>
     /// Based on the Weight.
     /// </summary>
     public double Fats { get; set; }
-    
+
     /// <summary>
     /// Based on the Weight.
     /// </summary>
     public double Protein { get; set; }
-    
+
     /// <summary>
     /// Based on the Weight.
     /// </summary>
@@ -55,6 +55,6 @@ public class Food : AuditableEntity
     /// Based on the Weight.
     /// </summary>
     public double Water { get; set; }
-    
+
     public ICollection<MealFood> MealParticipations { get; }
 }

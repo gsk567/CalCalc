@@ -401,3 +401,4 @@ appsettings.json
 appsettings.*.json
 
 .idea
+.DS_Store

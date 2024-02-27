@@ -10,8 +10,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalCalc.Common", "src\CalCa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{76325625-6F71-4F5C-A09E-AFCEA39FF6F8}"
 	ProjectSection(SolutionItems) = preProject
-		_design.txt = _design.txt
 		.gitignore = .gitignore
+		App.ruleset = App.ruleset
+		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
 Global

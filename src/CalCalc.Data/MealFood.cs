@@ -7,7 +7,7 @@ public class MealFood : Entity
     public Guid FoodId { get; set; }
 
     public Food Food { get; set; }
-    
+
     public Guid MealId { get; set; }
 
     public Meal Meal { get; set; }
@@ -16,7 +16,7 @@ public class MealFood : Entity
     /// Amount is in grams.
     /// </summary>
     public double Amount { get; set; }
-    
+
     /// <summary>
     /// Amount is in grams.
     /// </summary>

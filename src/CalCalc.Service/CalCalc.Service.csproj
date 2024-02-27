@@ -2,10 +2,19 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <CodeAnalysisRuleSet>../../App.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\CalCalc.Data\CalCalc.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    
 </Project>

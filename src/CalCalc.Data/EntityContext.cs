@@ -10,14 +10,14 @@ namespace CalCalc.Data;
 
 public class EntityContext : IdentityUserContext<ApplicationUser, Guid>
 {
-    private readonly EntityState[] auditableStates = 
+    private readonly EntityState[] auditableStates =
     {
         EntityState.Added,
         EntityState.Modified,
     };
 
     private readonly ICurrentUser currentUser;
-    
+
     public EntityContext(
         DbContextOptions<EntityContext> options,
         ICurrentUser currentUser = null)
@@ -44,22 +44,22 @@ public class EntityContext : IdentityUserContext<ApplicationUser, Guid>
         return base.SaveChanges();
     }
 
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        base.OnModelCreating(builder);
-        builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
-    }
-
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         this.HandleAuditableEntities();
         return base.SaveChangesAsync(cancellationToken);
     }
 
-    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {
         this.HandleAuditableEntities();
         return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
     }
 
     private void HandleAuditableEntities()

@@ -10,7 +10,7 @@ public class Meal : AuditableEntity
     {
         this.Foods = new HashSet<MealFood>();
     }
-    
+
     public string Name { get; set; }
 
     public ICollection<MealFood> Foods { get; }

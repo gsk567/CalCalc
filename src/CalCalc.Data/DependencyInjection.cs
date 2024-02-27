@@ -18,7 +18,7 @@ public static class DependencyInjection
                 builder.MigrationsAssembly(typeof(EntityContext).Assembly.FullName);
             });
         });
-        
+
         return services;
     }
 }

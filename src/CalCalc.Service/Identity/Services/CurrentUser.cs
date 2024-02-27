@@ -11,7 +11,7 @@ internal class CurrentUser : ICurrentUser
     private readonly IHttpContextAccessor httpContextAccessor;
 
     private Guid? userId;
-    
+
     public CurrentUser(IHttpContextAccessor httpContextAccessor = null)
     {
         this.httpContextAccessor = httpContextAccessor;

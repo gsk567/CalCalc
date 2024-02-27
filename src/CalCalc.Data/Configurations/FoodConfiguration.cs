@@ -12,11 +12,11 @@ public class FoodConfiguration : IEntityTypeConfiguration<Food>
             .Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(ModelDefaults.MaxNameLength);
-        
+
         builder
             .Property(x => x.Weight)
             .IsRequired();
-        
+
         builder
             .HasMany(x => x.MealParticipations)
             .WithOne(x => x.Food)

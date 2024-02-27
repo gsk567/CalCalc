@@ -23,7 +23,7 @@ public class AuthController : Controller
     {
         this.userManager = userManager;
     }
-    
+
     [HttpGet("/sign-in")]
     public async Task<IActionResult> SignIn()
     {
@@ -35,7 +35,7 @@ public class AuthController : Controller
         var model = new SignInViewModel();
         return this.View(model);
     }
-    
+
     [HttpPost("/sign-in")]
     public async Task<IActionResult> SignIn(SignInViewModel model)
     {
@@ -43,20 +43,20 @@ public class AuthController : Controller
         {
             return this.RedirectToAction("Index", "Home");
         }
-        
-        if (ModelState.IsValid)
+
+        if (this.ModelState.IsValid)
         {
             var user = await this.userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Invalid credentials");
+                this.ModelState.AddModelError(string.Empty, "Invalid credentials");
                 return this.View(model);
             }
 
             var isPasswordCorrect = await this.userManager.CheckPasswordAsync(user, model.Password);
             if (!isPasswordCorrect)
             {
-                ModelState.AddModelError(string.Empty, "Invalid credentials");
+                this.ModelState.AddModelError(string.Empty, "Invalid credentials");
                 return this.View(model);
             }
 
@@ -66,9 +66,9 @@ public class AuthController : Controller
             var claimsIdentity = new ClaimsIdentity(
                 claims,
                 CookieAuthenticationDefaults.AuthenticationScheme);
-            
+
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-            
+
             await this.HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 claimsPrincipal,
@@ -76,18 +76,18 @@ public class AuthController : Controller
 
             return this.RedirectToAction("Index", "Home");
         }
-        
+
         return this.View(model);
     }
 
     [HttpGet("/sign-out")]
     [Authorize]
-    public async Task<IActionResult> SignOut()
+    public async Task<IActionResult> Logout()
     {
         await this.HttpContext.SignOutAsync();
-        return this.RedirectToAction(nameof(SignIn));
+        return this.RedirectToAction(nameof(this.SignIn));
     }
-    
+
     [HttpGet("/sign-up")]
     public async Task<IActionResult> SignUp()
     {
@@ -99,7 +99,7 @@ public class AuthController : Controller
         var model = new SignUpViewModel();
         return this.View(model);
     }
-    
+
     [HttpPost("/sign-up")]
     public async Task<IActionResult> SignUp(SignUpViewModel model)
     {
@@ -108,7 +108,7 @@ public class AuthController : Controller
             return this.RedirectToAction("Index", "Home");
         }
 
-        if (ModelState.IsValid)
+        if (this.ModelState.IsValid)
         {
             await this.userManager.CreateAsync(
                 new ApplicationUser
@@ -118,10 +118,10 @@ public class AuthController : Controller
                     EmailConfirmed = true,
                 },
                 model.Password);
-            
+
             return this.RedirectToAction("Index", "Home");
         }
-        
+
         return this.View(model);
     }
 }
