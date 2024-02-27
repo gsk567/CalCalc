@@ -1,5 +1,8 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 using CalCalc.Data;
+using CalCalc.Service.Foods.Models;
+using CalCalc.Service.Foods.Services;
 using CalCalc.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,17 +11,16 @@ namespace CalCalc.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly EntityContext entityContext;
+    private readonly IFoodService foodService;
 
-    public HomeController(
-        EntityContext entityContext)
+    public HomeController(IFoodService foodService)
     {
-        this.entityContext = entityContext;
+        this.foodService = foodService;
     }
 
     [HttpGet("/")]
     [Authorize]
-    public IActionResult Index([FromQuery]string foodName)
+    public async Task<IActionResult> Index([FromQuery]string foodName)
     {
         var model = new HomeViewModel
         {
@@ -27,11 +29,10 @@ public class HomeController : Controller
 
         if (!string.IsNullOrEmpty(foodName))
         {
-            this.entityContext.Foods.Add(new Food
+            await this.foodService.CreateFoodAsync(new FoodModel
             {
                 Name = foodName,
             });
-            this.entityContext.SaveChanges();
         }
 
         return this.View(model);
