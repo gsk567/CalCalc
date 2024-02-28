@@ -1,4 +1,5 @@
 ﻿using CalCalc.Common.Contracts;
+using CalCalc.Service.Foods.Mapping;
 using CalCalc.Service.Foods.Services;
 using CalCalc.Service.Identity.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,8 @@ public static class DependencyInjection
     {
         services.AddScoped<ICurrentUser, CurrentUser>();
         services.AddScoped<IFoodService, FoodService>();
+
+        services.AddAutoMapper(typeof(FoodsMappingProfile).Assembly);
 
         return services;
     }
