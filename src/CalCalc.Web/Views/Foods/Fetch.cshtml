@@ -1,14 +1,38 @@
+@using CalCalc.Common.Contracts
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model PaginatedItemsResult<FoodModel>
 @{
     this.Context.Request.Query.TryGetValue("q", out var searchQuery);
+    this.Context.Request.Query.TryGetValue("ps", out var pageSizeRaw);
+    int.TryParse(pageSizeRaw.ToString(), out var pageSize);
+    if (pageSize == 0)
+    {
+        pageSize = CollectionConstants.DefaultPageSize;
+    }
+
+    var paginationViewModel = new PaginationViewModel
+    {
+        BasePath = $"/foods?q={searchQuery}&ps={pageSize}",
+        CurrentPage = Model.CurrentPage,
+        PagesCount = Model.PagesCount,
+    };
 }
+
+<a class="btn btn-primary mb-2" href="@Url.Action("Create")">Create New Food</a>
 
 <form class="mb-4 d-block w-100" method="get" asp-action="Fetch">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search" value="@searchQuery" name="q" aria-label="Search food" aria-describedby="food-search">
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="submit">Search</button>
-      </div>
+        <input type="text" class="form-control" placeholder="Search" value="@searchQuery" name="q" aria-label="Search food" aria-describedby="food-search">
+        <div class="input-group-append">
+            <select class="form-select" name="ps">
+                <option selected="@(pageSize == CollectionConstants.DefaultPageSize)" value="@CollectionConstants.DefaultPageSize">Default</option>
+                <option selected="@(pageSize == 2)" value="2">2</option>
+                <option selected="@(pageSize == CollectionConstants.DefaultPageSize * 2)" value="@(CollectionConstants.DefaultPageSize * 2)">@(CollectionConstants.DefaultPageSize * 2)</option>
+            </select>
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
     </div>
 </form>
 
@@ -22,17 +46,10 @@ else
         @foreach (var food in Model.Items)
         {
             <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            @food.Name
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <p>Calories: @food.Calories</p>
-                    </div>
-                </div>
+                <partial name="_FoodCard" model="food"/>
             </div>
         }
+
+        <partial name="_Pagination" model="paginationViewModel"/>
     </div>
 }
